@@ -1,0 +1,3 @@
+rootProject.name='KotlinBase'
+include ':app', ':model'
+include ':data'

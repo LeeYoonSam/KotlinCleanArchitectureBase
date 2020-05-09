@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+
+            // API Domain
+            buildConfigField "String", "API_URL", '"https://jsonplaceholder.typicode.com/"'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Real API Domain
+            buildConfigField "String", "API_URL", '"https://jsonplaceholder.typicode.com/"'
+        }
+    }
+
+}
+
+dependencies {
+    api project(":model")
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Architecture Components
+    implementation "androidx.room:room-runtime:$rootProject.roomVer"
+    kapt "androidx.room:room-compiler:$rootProject.roomVer"
+    implementation "androidx.room:room-ktx:$rootProject.roomVer"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVer"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVer"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+
+    // Dagger (의존성 주입)
+    api "com.google.dagger:dagger:$rootProject.daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVer"
+    api "com.google.dagger:dagger-android:$rootProject.daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVer"
+
+    // Retrofit(HTTP API 인터페이스 전환)
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVer"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVer"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.6.0"
+    implementation 'org.conscrypt:conscrypt-android:2.2.1'
+
+
+    // ThreeTenBP for the shared module only. Date and time API for Java.
+    testImplementation "org.threeten:threetenbp:$rootProject.threetenbpVer"
+    implementation "org.threeten:threetenbp:$rootProject.threetenbpVer:no-tzdb"
+
+    // Logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVer"
+}
