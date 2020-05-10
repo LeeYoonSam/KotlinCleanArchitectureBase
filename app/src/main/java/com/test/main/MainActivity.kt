@@ -3,10 +3,14 @@ package com.test.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.test.data.util.viewModelProvider
 import com.test.databinding.ActivityMainBinding
+import com.test.model.Photo
 import dagger.android.AndroidInjection
+import org.threeten.bp.ZoneId
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -19,12 +23,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        mainViewModel = viewModelProvider(viewModelFactory)
-    }
+        binding = ActivityMainBinding.inflate(layoutInflater).apply {
+            lifecycleOwner = this@MainActivity
+        }
 
-    fun onClickGetPost(view: View) {
-        mainViewModel.getPosts()
+        setContentView(binding.root)
+
+        mainViewModel = viewModelProvider(viewModelFactory)
+        binding.mainVm = mainViewModel
+        mainViewModel.getPhotoData()
     }
 }

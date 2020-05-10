@@ -1,6 +1,7 @@
 package com.test.model
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.Response
 
 data class Post(
     @SerializedName("userId")
@@ -15,3 +16,5 @@ data class Post(
     @SerializedName("body")
     val body: String
 )
+
+typealias PostRes = Response<List<Post>>
