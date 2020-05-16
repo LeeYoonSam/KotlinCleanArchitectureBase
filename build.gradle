@@ -28,6 +28,7 @@ task clean(type: Delete) {
 }
 
 ext {
+    coroutineVer = '1.3.2'
     archLifecycleVer = '2.2.0'
     daggerVer = '2.27'
     roomVer = '2.2.5'
