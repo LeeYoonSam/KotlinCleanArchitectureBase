@@ -3,7 +3,9 @@ package com.test.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.test.data.util.viewModelProvider
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mainViewModel = viewModelProvider(viewModelFactory)
+
+        mainViewModel.error.observe(this, Observer { Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show() })
         binding.mainVm = mainViewModel
         mainViewModel.getPhotoData()
     }

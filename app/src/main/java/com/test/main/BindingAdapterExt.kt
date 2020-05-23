@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.test.R
 import com.test.model.Photo
 
-@BindingAdapter(value = ["photoItems"])
+@BindingAdapter("photoItems")
 fun photoItems(recyclerView: RecyclerView, list: List<Photo>?) {
     list ?: return
 
@@ -21,13 +21,12 @@ fun photoItems(recyclerView: RecyclerView, list: List<Photo>?) {
     }
 }
 
-@BindingAdapter(value = ["photoThumbnail"])
+@BindingAdapter("photoThumbnail")
 fun photoThumbnail(imageView: ImageView, url: String?) {
-    if(url == null || url.isEmpty()) return
+    url ?: return
 
     Glide.with(imageView.context)
         .load(url)
-        .centerCrop()
         .placeholder(R.drawable.ic_launcher_foreground)
         .into(imageView)
 }

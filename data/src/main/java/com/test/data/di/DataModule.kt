@@ -1,14 +1,15 @@
 package com.test.data.di
 
-import com.test.data.photo.DefaultPhotoRepository
-import com.test.data.photo.PhotoDataSource
-import com.test.data.photo.PhotoRepository
-import com.test.data.photo.RemotePhotoDataSource
+import com.test.data.photo.*
 import com.test.data.post.DefaultPostRepository
 import com.test.data.post.PostDataSource
 import com.test.data.post.PostRepository
 import com.test.data.post.RemotePostDataSource
 import com.test.data.service.JsonPlaceholderService
+import com.test.model.Photo
+import com.test.model.mapper.ListMapper
+import com.test.model.mapper.ListMapperImpl
+import com.test.model.mapper.Mapper
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
