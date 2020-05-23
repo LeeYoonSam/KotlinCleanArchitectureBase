@@ -19,6 +19,12 @@ Clean Architecture 적용해보기
 
 * Entity 들의 모임
 
+*Result*
+- API 응답에서 성공과 에러를 구분하고 ViewModel 에서도 Result 상태에 따라 결과 처리를 쉽게 할 수 있도록 추가
+
+*Mapper*
+- 추후에 필요한 부분만 캐시하기 위해 맵퍼 추가
+
 
 ## Using Library
 * Dagger - dependency injection
