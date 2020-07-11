@@ -28,6 +28,11 @@ Clean Architecture 적용해보기
 
 ## Using Library
 * Dagger - dependency injection
+
+* Dagger -> Hilt 마이그레이션 하기
+    * https://codelabs.developers.google.com/codelabs/android-dagger-to-hilt/#0
+    * https://developer.android.com/training/dependency-injection/hilt-android
+
 * Arch - architecture component
  - Lifecycle
  - Room
